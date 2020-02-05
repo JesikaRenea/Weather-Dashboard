@@ -1,0 +1,25 @@
+h1 {
+    border-bottom: solid black 1.5px;
+    text-align: center;
+    background-color: rgb(44, 42, 42);
+    color: white;
+}
+
+.search {
+    float: left;
+    background-color: whitesmoke;
+    margin-right: 15px;
+    column-fill: 100%;
+}
+
+.form-group {
+    padding-left: 0px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  
