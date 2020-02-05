@@ -22,13 +22,13 @@
         <div class="container search col-sm-3"> <!--Search Container Left-->
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Enter a City" aria-describedby="button-addon2">
+                <input type="text" class="form-control" id="city-name" placeholder="Enter a City" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button" id="button-addon2" id="search-button">Search</button>
+                  <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">Search</button>
                 </div>
               </div>
 
-            <ul class="list-group">
+            <ul class="list-group recent-searches">
                 <li class="list-group-item">Recent Search</li>
                 <li class="list-group-item">Recent Search</li>
                 <li class="list-group-item">Recent Search</li>
@@ -38,7 +38,11 @@
         <div class="container returns col-sm-9"><!--API Returns Column Right-->
             <div class="card">
                 <div class="card-body">
-                  <h2 class="city">City goes here</h2>
+                  <h2 class="city">
+                      
+                    City goes here
+
+                  </h2>
                   <p class="forecast">Forecast goes here:</p>
                 </div>
               </div>
