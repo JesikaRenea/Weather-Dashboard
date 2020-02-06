@@ -16,47 +16,55 @@
 <body>
     <header>
         <h1>Weather Dashboard</h1>
+        <p id="currentDay" class="lead"></p>
+
     </header>
 
-    <div class="container"><!--Main Container-->
-        <div class="container search col-sm-3"> <!--Search Container Left-->
+    <div class="container">
+        <!--Main Container-->
+        <div class="container search col-sm-3">
+            <!--Search Container Left-->
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="city-name" placeholder="Enter a City" aria-describedby="button-addon2">
+                <input type="text" class="form-control" id="city-name" placeholder="Enter a City"
+                    aria-describedby="button-addon2">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">Search</button>
+                    <button class="btn btn-outline-secondary search-button" type="button"
+                        id="button-addon2">Search</button>
                 </div>
-              </div>
+            </div>
 
             <ul class="list-group recent-searches">
                 <li class="list-group-item">Recent Search</li>
                 <li class="list-group-item">Recent Search</li>
                 <li class="list-group-item">Recent Search</li>
             </ul>
-        </div><!--Closing Search Container-->
+        </div>
+        <!--Closing Search Container-->
 
-        <div class="container returns col-sm-9"><!--API Returns Column Right-->
+        <div class="container returns col-sm-9">
+            <!--API Returns Column Right-->
             <div class="card">
                 <div class="card-body">
-                  <h2 class="city">
-                      
-                    City goes here
+                    <h2 class="city">
 
-                  </h2>
-                  <p class="forecast">Forecast goes here:</p>
+                        City goes here
+
+                    </h2>
+                    <p class="forecast">Forecast goes here:</p>
                 </div>
-              </div>
+            </div>
 
-              <br>
+            <br>
 
-              <h4>5-Day Forecast:</h4>
+            <h4>5-Day Forecast:</h4>
 
-              <div class="card text-white bg-primary mb-3" style="max-width: 10rem;">
+            <div class="card text-white bg-primary mb-3" style="max-width: 10rem;">
                 <div class="card-body">
-                  <h5 class="card-title">Forecast Box</h5>
-                  <p class="card-text">5 Day Forecast</p>
+                    <h5 class="card-title">Forecast Box</h5>
+                    <p class="card-text">5 Day Forecast</p>
                 </div>
-              </div>
+            </div>
 
 
 
@@ -65,13 +73,12 @@
 
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+  <script src='script.js'></script>
+
+
     <script src="script.js"></script>
 </body>
 

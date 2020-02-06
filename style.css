@@ -21,5 +21,9 @@ h1 {
     clear: both;
     display: table;
   }
+#currentDay {
+    text-align: center;
+    color: gray;
 
+}
   
