@@ -27,3 +27,6 @@ h1 {
 
 }
   
+#forecast-card {
+    max-width: 10rem;
+}

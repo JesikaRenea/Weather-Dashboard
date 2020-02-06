@@ -35,9 +35,11 @@
             </div>
 
             <ul class="list-group recent-searches">
-                <li class="list-group-item">Recent Search</li>
-                <li class="list-group-item">Recent Search</li>
-                <li class="list-group-item">Recent Search</li>
+                <li class="list-group-item" id ="recent-search">
+                    <!--Local Storage prepend here-->
+                    Recent Search
+                </li>
+
             </ul>
         </div>
         <!--Closing Search Container-->
@@ -46,11 +48,6 @@
             <!--API Returns Column Right-->
             <div class="card">
                 <div class="card-body">
-                    <!-- <h2 class="city">
-
-                        City goes here
-
-                    </h2> -->
 
                     <div class="forecast"><!--Forecast--></div>
 
@@ -61,10 +58,11 @@
 
             <h4>5-Day Forecast:</h4>
 
-            <div class="card text-white bg-primary mb-3" style="max-width: 10rem;">
+            <div class="card text-white bg-primary mb-3" id="forecast-card">
                 <div class="card-body">
-                    <h5 class="card-title">Forecast Box</h5>
-                    <p class="card-text">5 Day Forecast</p>
+                    <p class="card-text" id="forecast-p">5 Day Forecast Box
+                        <!--5 Day goes here-->
+                    </p>
                 </div>
             </div>
 
