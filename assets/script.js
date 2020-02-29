@@ -11,6 +11,7 @@ var myApi = "54448964d77673d05e876660501678d0";
 
 var searchBtn = $(".search-button");
 
+
 var city = [];
 
 function renderCity(newcity) {
@@ -18,16 +19,37 @@ function renderCity(newcity) {
     $("#recent-search").empty();
     for (var i = 0; i < city.length; i++) {
         var newLi = $("<li>");
-        newLi.addClass("list-group-item");
+        newLi.addClass("list-group-item usedCities");
         newLi.attr("data-city", city[i]);
         newLi.text(city[i]);
         $("#recent-search").append(newLi);
     }
 }
 
+var cityHistory = [];
+
+function saveToStorage() {
+    let city = $("#city-name")
+        .val()
+        .trim();
+    cityHistory.push(city);
+    localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+    renderCity();
+}
+
+$(document).on("click", ".usedCities", function () {
+    var value = $(this).text()
+    $('.forecast').empty()
+    console.log(value)
+    getWeather(value)
+    fiveDayForecast(value)
+})
+
 
 searchBtn.on("click", function (event) {
     event.preventDefault();
+    saveToStorage();
+
 
     var cityName = $("#city-name").val().trim();
     if (!cityName) return;
@@ -37,6 +59,9 @@ searchBtn.on("click", function (event) {
     var queryFiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&APPID=54448964d77673d05e876660501678d0&units=imperial";
     renderCity(cityName);
 
+
+
+    // function getWeather(city){
     $.ajax({
         url: queryWeatherUrl,
         method: 'GET'
@@ -74,6 +99,8 @@ searchBtn.on("click", function (event) {
                 })
         });
 
+
+    // function fiveDayForecast(city) {
     $.ajax({
         url: queryFiveDayUrl,
         method: 'GET'
@@ -85,16 +112,13 @@ searchBtn.on("click", function (event) {
             $("#fiveday-div").empty();
 
 
-
-
-
             for (var i = 0; i < 5; i++) {
-        
+
                 var fiveDay = res.list;
                 // console.log(res.list[i].weather[0].icon)
                 var iconFor = 'https://openweathermap.org/img/wn/' + fiveDay[i].weather[0].icon + '.png';
-    
-    
+
+
 
                 var fiveDayDiv = $("<div>").addClass('card text-white bg-primary mb-3 fiveday-card');
                 var fiveDayDivBody = $("<div>").addClass('card-body');
@@ -109,6 +133,7 @@ searchBtn.on("click", function (event) {
                 $("#fiveday-div").append(fiveDayDiv);
 
             }
+
 
 
         });
