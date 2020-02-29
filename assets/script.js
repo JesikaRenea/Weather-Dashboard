@@ -41,22 +41,9 @@ $(document).on("click", ".usedCities", function () {
     fiveDayForecast(value)
 })
 
+function getWeather(city) {
+    var queryWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=54448964d77673d05e876660501678d0&units=imperial";
 
-searchBtn.on("click", function (event) {
-    event.preventDefault();
-    saveToStorage();
-
-
-    var cityName = $("#city-name").val().trim();
-    if (!cityName) return;
-
-    $("#city-name").val("");
-    var queryWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=54448964d77673d05e876660501678d0&units=imperial";
-    var queryFiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&APPID=54448964d77673d05e876660501678d0&units=imperial";
-    renderCity(cityName);
-
-
-    // function getWeather(city){
     $.ajax({
         url: queryWeatherUrl,
         method: 'GET'
@@ -93,44 +80,52 @@ searchBtn.on("click", function (event) {
                     $(".city-weather-div").append(uvP);
                 })
         });
+}
 
-
-    // function fiveDayForecast(city) {
+function fiveDayForecast(city) {
+    var queryFiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&APPID=54448964d77673d05e876660501678d0&units=imperial";
     $.ajax({
         url: queryFiveDayUrl,
         method: 'GET'
     })
         .then(function (res) {
-            // console.log(queryWeatherUrl);
-            // console.log(res);
-            // console.log(res.list)
             $("#fiveday-div").empty();
 
 
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < res.list.length; i++) {
+                console.log(res.list);
 
                 var fiveDay = res.list;
-                // console.log(res.list[i].weather[0].icon)
-                var iconFor = 'https://openweathermap.org/img/wn/' + fiveDay[i].weather[0].icon + '.png';
+                if(fiveDay[i].dt_txt.includes('21:00:00')){
+                    var iconFor = 'https://openweathermap.org/img/wn/' + fiveDay[i].weather[0].icon + '.png';
 
-
-
-                var fiveDayDiv = $("<div>").addClass('card text-white bg-primary mb-3 fiveday-card');
-                var fiveDayDivBody = $("<div>").addClass('card-body');
-
-                var fiveDayP = $("<h5>").text(fiveDay[i].dt_txt);
-                var fiveIconImg = $('<img>').attr('src', iconFor);
-                var fiveTempP = $("<p>").text("Temperature: " + fiveDay[i].main.temp + " F");
-                var fiveHumidP = $("<p>").text("Humidity: " + fiveDay[i].main.humidity + "%");
-
-                fiveDayDivBody.append(fiveDayP, fiveIconImg, fiveTempP, fiveHumidP);
-                fiveDayDiv.append(fiveDayDivBody);
-                $("#fiveday-div").append(fiveDayDiv);
-
+                    var fiveDayDiv = $("<div>").addClass('card text-white bg-primary mb-3 fiveday-card');
+                    var fiveDayDivBody = $("<div>").addClass('card-body');
+    
+                    var fiveDayP = $("<h5>").text(moment(fiveDay[i].dt_txt).format('L'));
+                    var fiveIconImg = $('<img>').attr('src', iconFor);
+                    var fiveTempP = $("<p>").text("Temperature: " + fiveDay[i].main.temp + " F");
+                    var fiveHumidP = $("<p>").text("Humidity: " + fiveDay[i].main.humidity + "%");
+    
+                    fiveDayDivBody.append(fiveDayP, fiveIconImg, fiveTempP, fiveHumidP);
+                    fiveDayDiv.append(fiveDayDivBody);
+                    $("#fiveday-div").append(fiveDayDiv);
+                }
             }
-
-
-
         });
+}
+
+
+searchBtn.on("click", function (event) {
+    event.preventDefault();
+    saveToStorage();
+
+    var cityName = $("#city-name").val().trim();
+    if (!cityName) return;
+
+    $("#city-name").val("");
+    renderCity(cityName);
+    getWeather(cityName);
+    fiveDayForecast(cityName);
 
 });
